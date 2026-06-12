@@ -1,4 +1,12 @@
 package nl.wiegersma.dairyfarm.dto;
 
-public record ClawDiseaseResponseDto(String name, String description, String clawTreatment, BaseDto baseDto) {
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class ClawDiseaseResponseDto extends BaseDto{
+    private String name;
+    private String description;
+    private String clawTreatment;
 }

@@ -1,8 +1,15 @@
 package nl.wiegersma.dairyfarm.dto;
 
+
+import lombok.Getter;
+import lombok.Setter;
 import nl.wiegersma.dairyfarm.enums.ClawPosition;
 
 import java.time.LocalDate;
 
-public record ClawTreatmentResponseDto(LocalDate dateHoofTreatment, ClawPosition clawPosition, BaseDto baseDto) {
+@Getter
+@Setter
+public class ClawTreatmentResponseDto extends BaseDto {
+    private LocalDate dateHoofTreatment;
+    private ClawPosition clawPosition;
 }

@@ -1,4 +1,13 @@
 package nl.wiegersma.dairyfarm.dto;
 
-public record MedicineRequestDto(String name, String description, int milkWithholdingPeriod, int meatWithdrawalPeriod) {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class MedicineRequestDto {
+    private String name;
+    private String description;
+    private int milkWithholdingPeriod;
+    private int meatWithdrawalPeriod;
 }

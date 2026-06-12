@@ -1,4 +1,12 @@
 package nl.wiegersma.dairyfarm.dto;
 
-public record CowResponseDto(int earTag, boolean aLife, BaseDto baseDto) {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CowResponseDto extends BaseDto{
+    private int earTag;
+    private boolean aLife;
+
 }

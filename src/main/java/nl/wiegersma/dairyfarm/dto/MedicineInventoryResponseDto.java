@@ -1,4 +1,11 @@
 package nl.wiegersma.dairyfarm.dto;
 
-public record MedicineInventoryResponseDto(int batchNumber, int stockQuantity, BaseDto baseDto) {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class MedicineInventoryResponseDto extends BaseDto {
+    private int batchNumber;
+    private int stockQuantity;
 }
