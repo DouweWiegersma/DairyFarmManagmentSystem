@@ -7,20 +7,22 @@ import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ClawTreatmentMapper {
 
-    public ClawTreatment toEntity(ClawTreatmentRequestDto clawTreatmentRequestDto);
+    ClawTreatment toEntity(ClawTreatmentRequestDto clawTreatmentRequestDto);
 
-    public ClawTreatmentResponseDto toDto(ClawTreatment clawTreatment);
+    ClawTreatmentResponseDto toDto(ClawTreatment clawTreatment);
 
-    public void updateClawTreatment(ClawTreatmentRequestDto clawTreatmentRequestDto, @MappingTarget ClawTreatment clawTreatment);
+    void updateClawTreatment(ClawTreatmentRequestDto clawTreatmentRequestDto, @MappingTarget ClawTreatment clawTreatment);
 
-    public List<ClawTreatment> clawTreatmentToEntityList(List<ClawDiseaseRequestDto> clawDiseaseRequestDtoList);
+    List<ClawTreatment> clawTreatmentToEntityList(List<ClawDiseaseRequestDto> clawDiseaseRequestDtoList);
 
-    public List<ClawTreatmentResponseDto> clawTreatmentToDtoList(List<ClawTreatment> clawTreatmentsList);
+    List<ClawTreatmentResponseDto> clawTreatmentToDtoList(List<ClawTreatment> clawTreatmentsList);
 }

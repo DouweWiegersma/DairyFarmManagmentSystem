@@ -31,7 +31,7 @@ public class ClawDiseaseController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ClawDiseaseResponseDto> updateClawDisease(Long id, @RequestBody ClawDiseaseRequestDto clawDiseaseRequestDto){
+    public ResponseEntity<ClawDiseaseResponseDto> updateClawDisease(@PathVariable Long id, @RequestBody ClawDiseaseRequestDto clawDiseaseRequestDto){
         return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseService.updateClawDisease(clawDiseaseRequestDto, id));
     }
 
@@ -40,8 +40,8 @@ public class ClawDiseaseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clawDiseaseService.createClawDisease(clawDiseaseRequestDto));
     }
 
-    @DeleteMapping("{id")
-    public ResponseEntity<Void> deleteClawDisease(Long id){
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteClawDisease(@PathVariable Long id){
         clawDiseaseService.deleteClawDisease(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

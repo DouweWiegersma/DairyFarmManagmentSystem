@@ -3,8 +3,11 @@ package nl.wiegersma.dairyfarm.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,5 +16,7 @@ import lombok.Setter;
 public class ClawDisease extends Base{
     private String name;
     private String description;
-    private String clawTreatment;
+
+    @NotNull
+    private List<String> clawTreatment;
 }

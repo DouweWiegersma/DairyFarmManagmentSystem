@@ -1,12 +1,17 @@
 package nl.wiegersma.dairyfarm.dtos;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
 public class ClawDiseaseResponseDto extends BaseDto{
     private String name;
     private String description;
-    private String clawTreatment;
+
+    @NotNull
+    private List<String> clawTreatment;
 }
