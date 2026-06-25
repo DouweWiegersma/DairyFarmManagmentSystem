@@ -1,4 +1,4 @@
-package nl.wiegersma.dairyfarm.model;
+package nl.wiegersma.dairyfarm.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

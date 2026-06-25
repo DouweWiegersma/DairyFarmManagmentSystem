@@ -1,4 +1,4 @@
-package nl.wiegersma.dairyfarm.dto;
+package nl.wiegersma.dairyfarm.dtos;
 
 
 import lombok.Getter;
