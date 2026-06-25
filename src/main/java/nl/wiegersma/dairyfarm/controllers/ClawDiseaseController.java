@@ -1,13 +1,16 @@
 package nl.wiegersma.dairyfarm.controllers;
 
+import nl.wiegersma.dairyfarm.dtos.ClawDiseaseRequestDto;
 import nl.wiegersma.dairyfarm.dtos.ClawDiseaseResponseDto;
 import nl.wiegersma.dairyfarm.services.ClawDiseaseService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/clawdisease")
+import java.util.List;
+
+@RestController
+@RequestMapping("/clawdisease")
 public class ClawDiseaseController {
 
 
@@ -19,6 +22,33 @@ public class ClawDiseaseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClawDiseaseResponseDto> getOneClawDisease(@PathVariable Long id){
-        ClawclawDiseaseService.getOneClawDisease(id);
+       return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseService.getOneClawDisease(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClawDiseaseResponseDto>> getAllClawDiseases(){
+        return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseService.getAllClawDiseases());
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ClawDiseaseResponseDto> updateClawDisease(Long id, @RequestBody ClawDiseaseRequestDto clawDiseaseRequestDto){
+        return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseService.updateClawDisease(clawDiseaseRequestDto, id));
+    }
+
+    @PostMapping
+    public ResponseEntity<ClawDiseaseResponseDto> CreateClawDisease(@RequestBody ClawDiseaseRequestDto clawDiseaseRequestDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(clawDiseaseService.createClawDisease(clawDiseaseRequestDto));
+    }
+
+    @DeleteMapping("{id")
+    public ResponseEntity<Void> deleteClawDisease(Long id){
+        clawDiseaseService.deleteClawDisease(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllClawDiseases(){
+        clawDiseaseService.deleteAllClawDiseases();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
