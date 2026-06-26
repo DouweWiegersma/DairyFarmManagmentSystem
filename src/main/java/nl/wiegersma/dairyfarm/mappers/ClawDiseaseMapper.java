@@ -3,6 +3,7 @@ import nl.wiegersma.dairyfarm.dtos.ClawDiseaseRequestDto;
 import nl.wiegersma.dairyfarm.dtos.ClawDiseaseResponseDto;
 import nl.wiegersma.dairyfarm.models.ClawDisease;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ClawDiseaseMapper {
 
+    @Mapping(target = "clawTreatment", ignore = true)
     ClawDiseaseResponseDto toDto(ClawDisease clawDisease);
 
     ClawDisease toEntity(ClawDiseaseRequestDto clawDiseaseRequestDto);
