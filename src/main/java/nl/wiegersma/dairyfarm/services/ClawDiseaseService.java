@@ -6,9 +6,12 @@ import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.ClawDiseaseMapper;
 import nl.wiegersma.dairyfarm.models.ClawDisease;
 import nl.wiegersma.dairyfarm.repositories.ClawDiseaseRepository;
+import nl.wiegersma.dairyfarm.util.ClawTreatmentHashMap;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ClawDiseaseService {
@@ -43,7 +46,10 @@ public class ClawDiseaseService {
 
     public ClawDiseaseResponseDto getOneClawDisease(Long id){
         ClawDisease clawDisease = clawDiseaseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw disease not found with id: " + id ));
-        return clawDiseaseMapper.toDto(clawDisease);
+        ClawDiseaseResponseDto clawDiseaseResponseDto = clawDiseaseMapper.toDto(clawDisease);
+        HashMap<String, String> treatmentMap = ClawTreatmentHashMap.addStep(clawDisease.getClawTreatment());
+        clawDiseaseResponseDto.setClawTreatment(treatmentMap);
+        return clawDiseaseResponseDto;
     }
 
     public void deleteAllClawDiseases(){

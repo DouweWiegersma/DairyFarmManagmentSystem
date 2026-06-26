@@ -1,12 +1,10 @@
 package nl.wiegersma.dairyfarm.controllers;
-
 import nl.wiegersma.dairyfarm.dtos.ClawDiseaseRequestDto;
 import nl.wiegersma.dairyfarm.dtos.ClawDiseaseResponseDto;
 import nl.wiegersma.dairyfarm.services.ClawDiseaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
