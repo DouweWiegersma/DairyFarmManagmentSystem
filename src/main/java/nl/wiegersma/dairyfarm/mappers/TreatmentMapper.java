@@ -15,7 +15,7 @@ public interface TreatmentMapper {
 
     TreatmentResponseDto toDto(Treatment treatment);
 
-    void updateTreatment(TreatmentRequestDto treatmentRequestDto, @MappingTarget Treatment treatment);
+    Treatment updateTreatment(TreatmentRequestDto treatmentRequestDto, @MappingTarget Treatment treatment);
 
     List<TreatmentResponseDto> toDtoList(List<Treatment> treatmentList);
 }
