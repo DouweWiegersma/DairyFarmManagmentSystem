@@ -1,15 +1,11 @@
-package nl.wiegersma.dairyfarm.models;
+package nl.wiegersma.dairyfarm.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "medicines")
-public class Medicine extends Base {
+public class MedicationRequestDto {
     private String name;
     private String description;
     private int milkWithholdingPeriod;

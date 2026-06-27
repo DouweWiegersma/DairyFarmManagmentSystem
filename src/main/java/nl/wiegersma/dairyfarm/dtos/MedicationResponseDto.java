@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MedicineResponseDto extends BaseDto {
+public class MedicationResponseDto extends BaseDto {
     private String name;
     private String description;
     private int milkWithholdingPeriod;
