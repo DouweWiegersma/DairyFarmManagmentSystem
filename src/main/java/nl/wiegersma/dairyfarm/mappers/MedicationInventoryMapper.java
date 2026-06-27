@@ -15,7 +15,7 @@ public interface MedicationInventoryMapper {
 
     MedicationInventoryResponseDto toDto(MedicationInventory medicationInventory);
 
-    void updateMedicationInventory(MedicationInventoryRequestDto medicationInventoryRequestDto, @MappingTarget MedicationInventory medicationInventory);
+    MedicationInventory updateMedicationInventory(MedicationInventoryRequestDto medicationInventoryRequestDto, @MappingTarget MedicationInventory medicationInventory);
 
     List<MedicationInventoryResponseDto> toDtoList(List<MedicationInventory> medicationInventoryList);
 }
