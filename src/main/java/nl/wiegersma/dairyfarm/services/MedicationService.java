@@ -16,14 +16,13 @@ public class MedicationService {
     private final MedicationMapper medicationMapper;
     private final MedicationRepository medicationRepository;
 
-
     public MedicationService(MedicationMapper medicationMapper, MedicationRepository medicationRepository) {
         this.medicationMapper = medicationMapper;
         this.medicationRepository = medicationRepository;
     }
 
     public MedicationResponseDto getMedication(Long id){
-        Medication medication = medicationRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("medication not found with id: " + id);
+        Medication medication = medicationRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("medication not found with id: " + id));
         return medicationMapper.toDto(medication);
     }
 
