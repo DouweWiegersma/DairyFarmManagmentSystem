@@ -39,10 +39,10 @@ public class ClawTreatmentService {
     }
 
     public ClawTreatmentResponseDto updateClawTreatment(Long id, ClawTreatmentRequestDto clawTreatmentRequestDto){
-        ClawTreatment clawTreatment = clawTreatmentRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw Treatment not found with id: " + id));
-        clawTreatmentMapper.updateClawTreatment(clawTreatmentRequestDto, clawTreatment);
-        clawTreatmentRepository.save(clawTreatment);
-        return clawTreatmentMapper.toDto(clawTreatment);
+        ClawTreatment clawTreatment1 = clawTreatmentRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw Treatment not found with id: " + id));
+        clawTreatmentMapper.updateClawTreatment(clawTreatmentRequestDto, clawTreatment1);
+        ClawTreatment updated = clawTreatmentRepository.save(clawTreatment1);
+        return clawTreatmentMapper.toDto(updated);
     }
 
     public void deleteClawTreatment(Long id){

@@ -1,4 +1,5 @@
 package nl.wiegersma.dairyfarm.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -11,6 +12,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "clawTreatments")
 public class ClawTreatment extends Base{
-    private LocalDate date;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate dateClawTreatment;
     private ClawPosition clawPosition;
 }
