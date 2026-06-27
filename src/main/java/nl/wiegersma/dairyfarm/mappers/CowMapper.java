@@ -15,7 +15,7 @@ public interface CowMapper {
 
     CowResponseDto toDto(Cow cow);
 
-    void updateCow(CowRequestDto cowRequestDto, @MappingTarget Cow cow);
+    Cow updateCow(CowRequestDto cowRequestDto, @MappingTarget Cow cow);
 
     List<CowResponseDto> toListDto(List<Cow> cowList);
 }

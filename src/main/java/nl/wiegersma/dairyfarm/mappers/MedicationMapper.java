@@ -14,7 +14,7 @@ public interface MedicationMapper {
 
     MedicationResponseDto toDto(Medication medication);
 
-    void updateMedication(MedicationRequestDto medicationRequestDto, @MappingTarget Medication medication);
+    Medication updateMedication(MedicationRequestDto medicationRequestDto, @MappingTarget Medication medication);
 
     List<MedicationResponseDto> toDtoList(List<Medication> medicationList);
 }
