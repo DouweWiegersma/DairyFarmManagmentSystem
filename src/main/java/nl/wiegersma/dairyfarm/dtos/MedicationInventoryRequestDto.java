@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MedicineInventoryRequestDto {
+public class MedicationInventoryRequestDto {
     private int BatchNumber;
     private int StockQuantity;
 }
