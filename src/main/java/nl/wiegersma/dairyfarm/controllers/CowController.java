@@ -1,7 +1,6 @@
 package nl.wiegersma.dairyfarm.controllers;
 import nl.wiegersma.dairyfarm.dtos.CowRequestDto;
 import nl.wiegersma.dairyfarm.dtos.CowResponseDto;
-import nl.wiegersma.dairyfarm.models.Cow;
 import nl.wiegersma.dairyfarm.services.CowService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cow")
+@RequestMapping("/cows")
 public class CowController {
 
     private final CowService cowService;
