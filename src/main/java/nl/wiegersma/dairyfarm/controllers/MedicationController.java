@@ -21,7 +21,7 @@ public class MedicationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicationResponseDto> getMedication(Long id){
+    public ResponseEntity<MedicationResponseDto> getMedication(@PathVariable Long id){
         MedicationResponseDto medicationResponseDto = medicationService.getMedication(id);
         return ResponseEntity.status(HttpStatus.OK).body(medicationResponseDto);
     }
@@ -33,7 +33,7 @@ public class MedicationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicationResponseDto> updateMedication(MedicationRequestDto medicationRequestDto, Long id){
+    public ResponseEntity<MedicationResponseDto> updateMedication(MedicationRequestDto medicationRequestDto, @PathVariable Long id){
         MedicationResponseDto medicationResponseDto = medicationService.updateMedication(id, medicationRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(medicationResponseDto);
     }
@@ -44,8 +44,8 @@ public class MedicationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(medicationResponseDto);
     }
 
-    @DeleteMapping("/{id")
-    public ResponseEntity<Void> deleteMedication(Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMedication(@PathVariable Long id){
         medicationService.deleteMedication(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

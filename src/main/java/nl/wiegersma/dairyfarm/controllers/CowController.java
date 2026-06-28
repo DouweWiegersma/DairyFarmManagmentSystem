@@ -37,7 +37,7 @@ public class CowController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CowResponseDto> updateCow(Long id, CowRequestDto cowRequestDto){
+    public ResponseEntity<CowResponseDto> updateCow(@PathVariable Long id, CowRequestDto cowRequestDto){
         CowResponseDto cowResponseDto = cowService.updateCow(id, cowRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(cowResponseDto);
     }
