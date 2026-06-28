@@ -23,7 +23,7 @@ public class MedicationService {
     }
 
     public MedicationResponseDto getMedication(Long id){
-        Medication medication = medicationRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("medication not found with id: " + id);
+        Medication medication = medicationRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("medication not found with id: " + id));
         return medicationMapper.toDto(medication);
     }
 
