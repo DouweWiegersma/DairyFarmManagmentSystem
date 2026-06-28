@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/Treatments")
 public class TreatmentController {
 
-    private TreatmentService treatmentService;
+    private final TreatmentService treatmentService;
 
     public TreatmentController(TreatmentService treatmentService) {
         this.treatmentService = treatmentService;
