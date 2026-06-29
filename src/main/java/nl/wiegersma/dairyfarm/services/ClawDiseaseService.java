@@ -40,8 +40,7 @@ public class ClawDiseaseService {
 
     public List<ClawDiseaseResponseDto> getAllClawDiseases(){
         List<ClawDisease> diseaseList = clawDiseaseRepository.findAll().stream().toList();
-        List<ClawDiseaseResponseDto> clawDiseaseResponseDto = clawDiseaseMapper.clawDiseaseDtoToList(diseaseList);
-        return  clawDiseaseResponseDto;
+        return clawDiseaseMapper.clawDiseaseDtoToList(diseaseList);
     }
 
     public ClawDiseaseResponseDto getOneClawDisease(Long id){

@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MedicationInventoryRequestDto {
-    private int BatchNumber;
-    private int StockQuantity;
+    private int batchNumber;
+    private int stockQuantity;
 }

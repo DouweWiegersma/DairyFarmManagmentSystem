@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clawdisease")
+@RequestMapping("/clawdiseases")
 public class ClawDiseaseController {
 
 
@@ -30,7 +30,8 @@ public class ClawDiseaseController {
 
     @PutMapping("{id}")
     public ResponseEntity<ClawDiseaseResponseDto> updateClawDisease(@PathVariable Long id, @RequestBody ClawDiseaseRequestDto clawDiseaseRequestDto){
-        return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseService.updateClawDisease(clawDiseaseRequestDto, id));
+        ClawDiseaseResponseDto clawDiseaseResponseDto = clawDiseaseService.updateClawDisease(clawDiseaseRequestDto, id);
+        return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseResponseDto);
     }
 
     @PostMapping
