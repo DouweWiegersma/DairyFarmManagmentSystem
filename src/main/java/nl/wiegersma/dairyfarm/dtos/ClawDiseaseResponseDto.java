@@ -1,7 +1,8 @@
 package nl.wiegersma.dairyfarm.dtos;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.HashMap;
+
+import java.util.List;
 
 
 @Setter
@@ -9,6 +10,6 @@ import java.util.HashMap;
 public class ClawDiseaseResponseDto extends BaseDto{
     private String name;
     private String description;
-    private HashMap<String, String> clawTreatment;
+    private List<String> treatment;
 
 }

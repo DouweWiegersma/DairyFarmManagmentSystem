@@ -50,4 +50,6 @@ public class ClawDiseaseController {
         clawDiseaseService.deleteAllClawDiseases();
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+
 }

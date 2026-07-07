@@ -5,25 +5,29 @@ import nl.wiegersma.dairyfarm.dtos.ClawDiseaseResponseDto;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.ClawDiseaseMapper;
 import nl.wiegersma.dairyfarm.models.ClawDisease;
+
+import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.repositories.ClawDiseaseRepository;
-import nl.wiegersma.dairyfarm.util.ClawTreatmentHashMap;
+
+import nl.wiegersma.dairyfarm.repositories.ClawTreatmentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public class ClawDiseaseService {
 
     private final ClawDiseaseRepository clawDiseaseRepository;
     private final ClawDiseaseMapper clawDiseaseMapper;
+    private final ClawTreatmentRepository clawTreatmentRepository;
 
-    public ClawDiseaseService(ClawDiseaseRepository clawDiseaseRepository, ClawDiseaseMapper clawDiseaseMapper) {
+    public ClawDiseaseService(ClawDiseaseRepository clawDiseaseRepository, ClawDiseaseMapper clawDiseaseMapper, ClawTreatmentRepository clawTreatmentRepository) {
         this.clawDiseaseRepository = clawDiseaseRepository;
         this.clawDiseaseMapper = clawDiseaseMapper;
+        this.clawTreatmentRepository = clawTreatmentRepository;
     }
-
 
     public ClawDiseaseResponseDto createClawDisease(ClawDiseaseRequestDto clawDiseaseRequestDto){
         ClawDisease entity = clawDiseaseMapper.toEntity(clawDiseaseRequestDto);
@@ -46,8 +50,6 @@ public class ClawDiseaseService {
     public ClawDiseaseResponseDto getOneClawDisease(Long id){
         ClawDisease clawDisease = clawDiseaseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw disease not found with id: " + id ));
         ClawDiseaseResponseDto clawDiseaseResponseDto = clawDiseaseMapper.toDto(clawDisease);
-        HashMap<String, String> treatmentMap = ClawTreatmentHashMap.addStep(clawDisease.getClawTreatment());
-        clawDiseaseResponseDto.setClawTreatment(treatmentMap);
         return clawDiseaseResponseDto;
     }
 
@@ -57,7 +59,14 @@ public class ClawDiseaseService {
 
     public void deleteClawDisease(Long id){
         ClawDisease clawDisease = clawDiseaseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw disease not found with id: " + id));
+        List<ClawTreatment> clawTreatments = clawTreatmentRepository.findByClawDiseaseId(id);
+
+        for (ClawTreatment clawTreatment : clawTreatments) {
+            clawTreatment.setClawDisease(null);
+        }
+        clawTreatmentRepository.saveAll(clawTreatments);
         clawDiseaseRepository.delete(clawDisease);
+
     }
 
 

@@ -1,6 +1,7 @@
 package nl.wiegersma.dairyfarm.dtos;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 
 @Getter
@@ -8,5 +9,5 @@ import java.util.List;
 public class ClawDiseaseRequestDto {
     private String name;
     private String description;
-    private List<String> clawTreatment;
+    private List<String> treatment;
 }
