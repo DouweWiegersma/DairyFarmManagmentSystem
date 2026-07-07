@@ -1,8 +1,10 @@
 package nl.wiegersma.dairyfarm.controllers;
 
 
+import nl.wiegersma.dairyfarm.dtos.MedicationInventoryRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationResponseDto;
+import nl.wiegersma.dairyfarm.repositories.MedicationInventoryRepository;
 import nl.wiegersma.dairyfarm.services.MedicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,11 @@ import java.util.List;
 public class MedicationController {
 
     private final MedicationService medicationService;
+    private final MedicationInventoryRepository medicationInventoryRepository;
 
-    public MedicationController(MedicationService medicationService) {
+    public MedicationController(MedicationService medicationService, MedicationInventoryRepository medicationInventoryRepository) {
         this.medicationService = medicationService;
+        this.medicationInventoryRepository = medicationInventoryRepository;
     }
 
     @GetMapping("/{id}")
@@ -33,13 +37,13 @@ public class MedicationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicationResponseDto> updateMedication(MedicationRequestDto medicationRequestDto, @PathVariable Long id){
+    public ResponseEntity<MedicationResponseDto> updateMedication(@RequestBody  MedicationRequestDto medicationRequestDto, @PathVariable Long id){
         MedicationResponseDto medicationResponseDto = medicationService.updateMedication(id, medicationRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(medicationResponseDto);
     }
 
     @PostMapping
-    public ResponseEntity<MedicationResponseDto> createMedication(MedicationRequestDto medicationRequestDto){
+    public ResponseEntity<MedicationResponseDto> createMedication(@RequestBody MedicationRequestDto medicationRequestDto){
         MedicationResponseDto medicationResponseDto = medicationService.createMedication(medicationRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(medicationResponseDto);
     }

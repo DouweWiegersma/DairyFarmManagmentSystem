@@ -13,6 +13,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(diseaseIdRequiredException.getMessage());
     }
 
+    @ExceptionHandler(value = RecordNotFoundException.class)
+    public ResponseEntity<String> handleRecordNotFoundException(RecordNotFoundException recordNotFoundException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(recordNotFoundException.getMessage());
+    }
+
+    @ExceptionHandler(value = ResourceInUseException.class)
+    public ResponseEntity<String> handleResourceInUseException(ResourceInUseException resourceInUseException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resourceInUseException.getMessage());
+    }
+
+
 
 
 }

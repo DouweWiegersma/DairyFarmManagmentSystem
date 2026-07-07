@@ -23,4 +23,6 @@ public class Cow extends Base{
     @OneToMany(mappedBy = "cow", cascade = CascadeType.ALL)
     private List<ClawTreatment> clawTreatments;
 
+    @OneToMany(mappedBy = "cow")
+    private List<Treatment> treatment;
 }

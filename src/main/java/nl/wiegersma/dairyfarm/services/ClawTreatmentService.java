@@ -4,7 +4,6 @@ import nl.wiegersma.dairyfarm.dtos.*;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.ClawDiseaseMapper;
 import nl.wiegersma.dairyfarm.mappers.ClawTreatmentMapper;
-import nl.wiegersma.dairyfarm.mappers.CowMapper;
 import nl.wiegersma.dairyfarm.models.ClawDisease;
 import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.models.Cow;
