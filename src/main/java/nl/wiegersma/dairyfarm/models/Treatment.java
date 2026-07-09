@@ -3,17 +3,18 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "treatments")
 public class Treatment extends Base{
-    private String dosage;
+    private int dosage;
     private int duration;
     private LocalDate date;
     private String description;
-
+    private int batchNumber;
     @ManyToOne
     @JoinColumn(name = "medication_Id")
     private Medication medication;
@@ -29,5 +30,6 @@ public class Treatment extends Base{
     @ManyToOne
     @JoinColumn(name = "clawTreatment_Id")
     private ClawTreatment clawTreatment;
+
 
 }

@@ -15,4 +15,5 @@ public class ClawTreatmentResponseDto extends BaseDto {
     private ClawPosition clawPosition;
     private ClawDiseaseResponseDto clawDisease;
 
+
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public abstract class BaseDto {
-    private long id;
+    private Long id;
     private LocalDate createdAt;
     private LocalDate updatedAt;
 }

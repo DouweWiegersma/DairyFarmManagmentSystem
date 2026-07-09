@@ -11,7 +11,6 @@ import nl.wiegersma.dairyfarm.repositories.ClawDiseaseRepository;
 import nl.wiegersma.dairyfarm.repositories.ClawTreatmentRepository;
 import nl.wiegersma.dairyfarm.repositories.CowRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
