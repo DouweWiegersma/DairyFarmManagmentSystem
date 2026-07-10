@@ -32,18 +32,18 @@ public class ClawTreatmentController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ClawTreatmentResponseDto> getOneClawTreatment(@PathVariable Long id){
-        ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.getOneClawTreatment(id);
+    public ResponseEntity<ClawTreatmentResponseDto> getOneClawTreatment(@PathVariable Long id, @RequestParam boolean diseases){
+        ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.getOneClawTreatment(id, diseases);
         return ResponseEntity.status(HttpStatus.OK).body(clawTreatmentResponseDto);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("{id}/clawDiseases")
     public ResponseEntity<ClawTreatmentResponseDto> updateClawTreatment(@PathVariable Long id, @RequestBody ClawTreatmentRequestDto clawTreatmentRequestDto){
         ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.updateClawTreatment(id, clawTreatmentRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(clawTreatmentResponseDto);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{id}/clawdiseases")
     public ResponseEntity<Void> deleteClawTreatment(@PathVariable Long id){
         clawTreatmentService.deleteClawTreatment(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

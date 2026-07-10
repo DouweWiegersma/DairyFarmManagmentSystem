@@ -8,4 +8,5 @@ import lombok.Setter;
 public class MedicationInventoryRequestDto {
     private int batchNumber;
     private int stockQuantity;
+    private Long medicationId;
 }

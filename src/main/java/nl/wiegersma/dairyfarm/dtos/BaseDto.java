@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class BaseDto {
-    private long id;
+public abstract class BaseDto {
+    private Long id;
     private LocalDate createdAt;
     private LocalDate updatedAt;
 }

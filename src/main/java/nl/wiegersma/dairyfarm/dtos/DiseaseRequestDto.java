@@ -1,14 +1,13 @@
 package nl.wiegersma.dairyfarm.dtos;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.HashMap;
 
+import java.util.List;
 
-@Setter
 @Getter
-public class ClawDiseaseResponseDto extends BaseDto{
+@Setter
+public class DiseaseRequestDto {
     private String name;
     private String description;
-    private HashMap<String, String> clawTreatment;
-
+    private List<String> treatment;
 }

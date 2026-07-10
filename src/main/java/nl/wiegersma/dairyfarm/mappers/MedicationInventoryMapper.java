@@ -8,10 +8,12 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+// Je zegt hier je mag gebruik maken van MedicationMapper class als je dit nodig hebt.
+@Mapper(componentModel = "spring", uses = MedicationMapper.class)
 public interface MedicationInventoryMapper {
 
     MedicationInventory toEntity(MedicationInventoryRequestDto medicationInventoryRequestDto);
+
 
     MedicationInventoryResponseDto toDto(MedicationInventory medicationInventory);
 

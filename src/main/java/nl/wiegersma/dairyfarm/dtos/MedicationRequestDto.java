@@ -8,6 +8,6 @@ import lombok.Setter;
 public class MedicationRequestDto {
     private String name;
     private String description;
-    private int milkWithholdingPeriod;
-    private int meatWithdrawalPeriod;
+    private Long milkWithholdingPeriod;
+    private Long meatWithdrawalPeriod;
 }
