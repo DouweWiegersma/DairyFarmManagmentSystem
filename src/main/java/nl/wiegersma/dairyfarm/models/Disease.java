@@ -10,13 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "clawDiseases")
-public class ClawDisease extends Base{
+@Table(name = "Diseases")
+public class Disease extends Base{
     private String name;
     private String description;
     private List<String> treatment;
 
-    @OneToMany(mappedBy = "clawDisease")
+    @OneToMany(mappedBy = "disease")
     private List<ClawTreatment> clawTreatments;
+
+    @OneToMany(mappedBy = "disease")
+    private List<Treatment> treatments;
 
 }

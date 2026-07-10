@@ -4,12 +4,10 @@ import lombok.Setter;
 
 import java.util.List;
 
-
-@Setter
 @Getter
-public class ClawDiseaseResponseDto extends BaseDto{
+@Setter
+public class DiseaseRequestDto {
     private String name;
     private String description;
     private List<String> treatment;
-
 }

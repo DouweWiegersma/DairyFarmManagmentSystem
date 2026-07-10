@@ -1,4 +1,5 @@
 package nl.wiegersma.dairyfarm.controllers;
+import jakarta.validation.Valid;
 import nl.wiegersma.dairyfarm.dtos.TreatmentRequestDto;
 import nl.wiegersma.dairyfarm.dtos.TreatmentResponseDto;
 import nl.wiegersma.dairyfarm.services.TreatmentService;
@@ -30,12 +31,12 @@ public class TreatmentController {
     }
 
     @PostMapping
-    public ResponseEntity<List<TreatmentResponseDto>> createTreatment(@RequestBody  TreatmentRequestDto treatmentRequestDto) {
+    public ResponseEntity<List<TreatmentResponseDto>> createTreatment(@Valid  @RequestBody  TreatmentRequestDto treatmentRequestDto) {
         List<TreatmentResponseDto> treatmentResponseDto = treatmentService.createTreatment(treatmentRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(treatmentResponseDto);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<TreatmentResponseDto> updateTreatment(@RequestBody TreatmentRequestDto treatmentRequestDto, @PathVariable Long id){
+    public ResponseEntity<TreatmentResponseDto> updateTreatment(@Valid @RequestBody TreatmentRequestDto treatmentRequestDto, @PathVariable Long id){
         TreatmentResponseDto treatmentResponseDto = treatmentService.updateTreatment(id, treatmentRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(treatmentResponseDto);
     }

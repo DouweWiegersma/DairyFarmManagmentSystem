@@ -12,6 +12,6 @@ public class CowResponseDto extends BaseDto{
     private Long cowNumber;
     private boolean aLife;
 
-    private List<ClawTreatmentResponseDto> clawTreatment;
+//    private List<ClawTreatmentResponseDto> clawTreatment;
 
 }

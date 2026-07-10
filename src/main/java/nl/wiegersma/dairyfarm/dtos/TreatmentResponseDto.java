@@ -22,6 +22,10 @@ public class TreatmentResponseDto extends BaseDto {
     private Long cowNumber;
     private int batchNumber;
 
+    private String diseaseName;
+
+
+
 
 
 }

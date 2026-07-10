@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ClawTreatmentRepository extends JpaRepository<ClawTreatment, Long> {
 
-    List<ClawTreatment> findByClawDiseaseId(Long clawDiseases);
+    List<ClawTreatment> findByDiseaseId(Long clawDiseases);
 
 
 

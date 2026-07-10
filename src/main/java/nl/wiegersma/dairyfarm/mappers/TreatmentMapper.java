@@ -11,10 +11,11 @@ import org.mapstruct.MappingTarget;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {
-        MedicationInventoryMapper.class, MedicationMapper.class, CowMapper.class
+        MedicationInventoryMapper.class, MedicationMapper.class, CowMapper.class, DiseaseMapper.class
 })
 public interface TreatmentMapper {
 
+    @Mapping(target = "disease", ignore = true)
     Treatment toEntity(TreatmentRequestDto treatmentRequestDto);
 
     @Mapping(source = "cow.cowNumber", target = "cowNumber")
@@ -23,6 +24,7 @@ public interface TreatmentMapper {
     TreatmentResponseDto toDto(Treatment treatment);
 
 
+    @Mapping(target = "disease", ignore = true)
     @Mapping(target = "cow", ignore = true)
     @Mapping(target = "medication", ignore = true)
     @Mapping(target = "medicationInventories", ignore = true)

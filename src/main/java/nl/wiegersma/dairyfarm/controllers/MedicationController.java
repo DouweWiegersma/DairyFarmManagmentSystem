@@ -17,11 +17,10 @@ import java.util.List;
 public class MedicationController {
 
     private final MedicationService medicationService;
-    private final MedicationInventoryRepository medicationInventoryRepository;
 
-    public MedicationController(MedicationService medicationService, MedicationInventoryRepository medicationInventoryRepository) {
+
+    public MedicationController(MedicationService medicationService) {
         this.medicationService = medicationService;
-        this.medicationInventoryRepository = medicationInventoryRepository;
     }
 
     @GetMapping("/{id}")

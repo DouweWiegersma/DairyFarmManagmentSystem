@@ -32,8 +32,8 @@ public class ClawTreatmentController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ClawTreatmentResponseDto> getOneClawTreatment(@PathVariable Long id, @RequestParam boolean clawDiseases){
-        ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.getOneClawTreatment(id, clawDiseases);
+    public ResponseEntity<ClawTreatmentResponseDto> getOneClawTreatment(@PathVariable Long id, @RequestParam boolean diseases){
+        ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.getOneClawTreatment(id, diseases);
         return ResponseEntity.status(HttpStatus.OK).body(clawTreatmentResponseDto);
     }
 

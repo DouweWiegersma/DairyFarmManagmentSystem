@@ -11,7 +11,6 @@ import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.models.Cow;
 import nl.wiegersma.dairyfarm.repositories.ClawTreatmentRepository;
 import nl.wiegersma.dairyfarm.repositories.CowRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,13 +41,13 @@ public class CowService {
 
             List<CowResponseDto> cowResponseDtoList = cowMapper.toListDto(cows);
 
-            if(clawTreatments) {
-                for (int i = 0; i < cows.size(); i++) {
-                    cowResponseDtoList.get(i).setClawTreatment(
-                            clawTreatmentMapper.clawTreatmentToDtoList(cows.get(i).getClawTreatments()));
-                }
-
-            }
+//            if(clawTreatments) {
+//                for (int i = 0; i < cows.size(); i++) {
+//                    cowResponseDtoList.get(i).setClawTreatment(
+//                            clawTreatmentMapper.clawTreatmentToDtoList(cows.get(i).getClawTreatments()));
+//                }
+//
+//            }
             return cowResponseDtoList;
     }
 

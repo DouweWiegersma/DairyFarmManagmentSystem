@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.wiegersma.dairyfarm.enums.ClawPosition;
 import java.time.LocalDate;
-import java.util.List;
+
 
 
 @Getter
@@ -21,12 +21,7 @@ public class ClawTreatment extends Base{
 
     @ManyToOne
     @JoinColumn(name = "disease_id")
-    private ClawDisease clawDisease;
-
-
-    @OneToMany(mappedBy = "clawTreatment")
-    private List<Treatment> treatment;
-
+    private Disease disease;
 
     @ManyToOne
     @JoinColumn(name = "cowId")

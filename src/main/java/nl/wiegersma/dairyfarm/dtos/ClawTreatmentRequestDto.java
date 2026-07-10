@@ -12,6 +12,6 @@ public class ClawTreatmentRequestDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateClawTreatment;
     private ClawPosition clawPosition;
-    private Long clawDiseaseId;
+    private Long diseaseId;
     private Long cowId;
 }

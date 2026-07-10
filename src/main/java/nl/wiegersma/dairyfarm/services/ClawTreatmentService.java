@@ -2,12 +2,12 @@ package nl.wiegersma.dairyfarm.services;
 import jakarta.transaction.Transactional;
 import nl.wiegersma.dairyfarm.dtos.*;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
-import nl.wiegersma.dairyfarm.mappers.ClawDiseaseMapper;
 import nl.wiegersma.dairyfarm.mappers.ClawTreatmentMapper;
-import nl.wiegersma.dairyfarm.models.ClawDisease;
+import nl.wiegersma.dairyfarm.mappers.DiseaseMapper;
 import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.models.Cow;
-import nl.wiegersma.dairyfarm.repositories.ClawDiseaseRepository;
+import nl.wiegersma.dairyfarm.models.Disease;
+import nl.wiegersma.dairyfarm.repositories.DiseaseRepository;
 import nl.wiegersma.dairyfarm.repositories.ClawTreatmentRepository;
 import nl.wiegersma.dairyfarm.repositories.CowRepository;
 import org.springframework.stereotype.Service;
@@ -18,29 +18,32 @@ public class ClawTreatmentService {
 
     private final ClawTreatmentRepository clawTreatmentRepository;
     private final ClawTreatmentMapper clawTreatmentMapper;
-    private final ClawDiseaseRepository clawDiseaseRepository;
+    private final DiseaseRepository diseaseRepository;
     private final CowRepository cowRepository;
-    private final ClawDiseaseMapper clawDiseaseMapper;
+    private final DiseaseMapper diseaseMapper;
 
-
-    public ClawTreatmentService(ClawTreatmentRepository clawTreatmentRepository, ClawTreatmentMapper clawTreatmentMapper, ClawDiseaseRepository clawDiseaseRepository, CowRepository cowRepository, ClawDiseaseMapper clawDiseaseMapper) {
+    public ClawTreatmentService(ClawTreatmentRepository clawTreatmentRepository, ClawTreatmentMapper clawTreatmentMapper, DiseaseRepository diseaseRepository, CowRepository cowRepository, DiseaseMapper diseaseMapper) {
         this.clawTreatmentRepository = clawTreatmentRepository;
         this.clawTreatmentMapper = clawTreatmentMapper;
-        this.clawDiseaseRepository = clawDiseaseRepository;
+        this.diseaseRepository = diseaseRepository;
         this.cowRepository = cowRepository;
-        this.clawDiseaseMapper = clawDiseaseMapper;
+        this.diseaseMapper = diseaseMapper;
     }
 
     @Transactional
     public ClawTreatmentResponseDto createClawTreatment(ClawTreatmentRequestDto clawTreatmentRequestDto){
+            Disease disease = diseaseRepository.findById(clawTreatmentRequestDto.getDiseaseId()).orElseThrow(() -> new RecordNotFoundException("ClawDisease with id " + clawTreatmentRequestDto.getDiseaseId() + "doesn't exist"));
 
-            ClawDisease clawDisease = clawDiseaseRepository.findById(clawTreatmentRequestDto.getClawDiseaseId()).orElseThrow(() -> new RecordNotFoundException("ClawDisease with id " + clawTreatmentRequestDto.getClawDiseaseId() + "doesn't exist"));
             ClawTreatment clawTreatment = clawTreatmentMapper.toEntity(clawTreatmentRequestDto);
-            clawTreatment.setClawDisease(clawDisease);
+            clawTreatment.setDisease(disease);
+
             Cow cow = cowRepository.findById(clawTreatmentRequestDto.getCowId()).orElseThrow(() -> new RecordNotFoundException("Cow with id " + clawTreatmentRequestDto.getCowId() + " doesn't exist"));
             clawTreatment.setCow(cow);
             clawTreatment = clawTreatmentRepository.save(clawTreatment);
-            return clawTreatmentMapper.toDto(clawTreatment);
+            ClawTreatmentResponseDto newClawTreatment = clawTreatmentMapper.toDto(clawTreatment);
+            newClawTreatment.setDisease(diseaseMapper.toDto(clawTreatment.getDisease()));
+
+            return newClawTreatment;
 
     }
 
@@ -54,16 +57,16 @@ public class ClawTreatmentService {
 
 
     @Transactional
-    public ClawTreatmentResponseDto getOneClawTreatment(Long clawTreatmentId, boolean clawDiseases){
-        if(clawDiseases){
-            ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId +" doesn't exist"));
+    public ClawTreatmentResponseDto getOneClawTreatment(Long clawTreatmentId, boolean diseases){
+        if(diseases){
+            ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId + " doesn't exist"));
             ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentMapper.toDto(clawTreatment);
-            ClawDisease clawDisease = clawTreatment.getClawDisease();
-            ClawDiseaseResponseDto clawDiseaseResponseDto = clawDiseaseMapper.toDto(clawDisease);
-            clawTreatmentResponseDto.setClawDisease(clawDiseaseResponseDto);
+            Disease disease = clawTreatment.getDisease();
+            DiseaseResponseDto diseaseResponseDto = diseaseMapper.toDto(disease);
+            clawTreatmentResponseDto.setDisease(diseaseResponseDto);
             return clawTreatmentResponseDto;
-        } else{
-            ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId +" doesn't exist"));
+        } else {
+            ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId + " doesn't exist"));
             ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentMapper.toDto(clawTreatment);
             return clawTreatmentResponseDto;
         }
@@ -74,9 +77,9 @@ public class ClawTreatmentService {
     public ClawTreatmentResponseDto updateClawTreatment(Long id, ClawTreatmentRequestDto clawTreatmentRequestDto){
         ClawTreatment clawTreatment1 = clawTreatmentRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw Treatment not found with id: " + id));
         clawTreatmentMapper.updateClawTreatment(clawTreatmentRequestDto, clawTreatment1);
-        if(clawTreatmentRequestDto.getClawDiseaseId() != null){
-            ClawDisease clawDisease = clawDiseaseRepository.findById(clawTreatmentRequestDto.getClawDiseaseId()).orElseThrow(() -> new RecordNotFoundException("ClawDisease with id " + clawTreatmentRequestDto.getClawDiseaseId() + "doesn't exist"));
-            clawTreatment1.setClawDisease(clawDisease);
+        if(clawTreatmentRequestDto.getDiseaseId() != null){
+            Disease disease = diseaseRepository.findById(clawTreatmentRequestDto.getDiseaseId()).orElseThrow(() -> new RecordNotFoundException("ClawDisease with id " + clawTreatmentRequestDto.getDiseaseId() + "doesn't exist"));
+            clawTreatment1.setDisease(disease);
         }
         ClawTreatment updated = clawTreatmentRepository.save(clawTreatment1);
         return clawTreatmentMapper.toDto(updated);
@@ -84,7 +87,7 @@ public class ClawTreatmentService {
 
     public void deleteClawTreatment(Long id){
         ClawTreatment clawTreatment = clawTreatmentRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw Treatment not found with id: " + id));
-        clawTreatment.setClawDisease(null);
+        clawTreatment.setDisease(null);
         clawTreatmentRepository.delete(clawTreatment);
     }
 

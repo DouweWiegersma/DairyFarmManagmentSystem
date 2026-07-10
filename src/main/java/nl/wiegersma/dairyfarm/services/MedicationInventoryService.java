@@ -3,7 +3,6 @@ import nl.wiegersma.dairyfarm.dtos.MedicationInventoryRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationInventoryResponseDto;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.MedicationInventoryMapper;
-import nl.wiegersma.dairyfarm.mappers.MedicationMapper;
 import nl.wiegersma.dairyfarm.models.Medication;
 import nl.wiegersma.dairyfarm.models.MedicationInventory;
 import nl.wiegersma.dairyfarm.repositories.MedicationInventoryRepository;
@@ -18,13 +17,11 @@ public class MedicationInventoryService {
     private final MedicationInventoryRepository medicationInventoryRepository;
     private final MedicationInventoryMapper medicationInventoryMapper;
     private final MedicationRepository medicationRepository;
-    private final MedicationMapper medicationMapper;
 
-    public MedicationInventoryService(MedicationInventoryRepository medicationInventoryRepository, MedicationInventoryMapper medicationInventoryMapper, MedicationRepository medicationRepository, MedicationMapper medicationMapper) {
+    public MedicationInventoryService(MedicationInventoryRepository medicationInventoryRepository, MedicationInventoryMapper medicationInventoryMapper, MedicationRepository medicationRepository) {
         this.medicationInventoryRepository = medicationInventoryRepository;
         this.medicationInventoryMapper = medicationInventoryMapper;
         this.medicationRepository = medicationRepository;
-        this.medicationMapper = medicationMapper;
     }
 
     public MedicationInventoryResponseDto getMedicationInventory(Long id) {
