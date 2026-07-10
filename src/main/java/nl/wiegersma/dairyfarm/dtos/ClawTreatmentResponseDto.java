@@ -3,8 +3,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import nl.wiegersma.dairyfarm.enums.ClawPosition;
-import nl.wiegersma.dairyfarm.models.Cow;
-
 import java.time.LocalDate;
 
 

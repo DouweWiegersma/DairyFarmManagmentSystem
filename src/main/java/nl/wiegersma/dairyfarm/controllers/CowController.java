@@ -26,8 +26,8 @@ public class CowController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CowResponseDto>> getAllCows(@RequestParam(required = false) boolean clawTreatments, @RequestParam (required = false) boolean cowNumber){
-        List<CowResponseDto> cowResponseDto = cowService.getCows(clawTreatments, cowNumber);
+    public ResponseEntity<List<CowResponseDto>> getAllCows( @RequestParam (required = false) boolean cowNumber){
+        List<CowResponseDto> cowResponseDto = cowService.getCows(cowNumber);
         return ResponseEntity.status(HttpStatus.OK).body(cowResponseDto);
     }
 

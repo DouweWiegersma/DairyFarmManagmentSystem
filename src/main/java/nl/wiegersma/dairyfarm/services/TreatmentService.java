@@ -2,6 +2,7 @@ package nl.wiegersma.dairyfarm.services;
 import nl.wiegersma.dairyfarm.dtos.TreatmentRequestDto;
 import nl.wiegersma.dairyfarm.dtos.TreatmentResponseDto;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
+import nl.wiegersma.dairyfarm.exceptions.ValueToHighException;
 import nl.wiegersma.dairyfarm.mappers.TreatmentMapper;
 import nl.wiegersma.dairyfarm.models.*;
 import nl.wiegersma.dairyfarm.repositories.*;
@@ -52,7 +53,11 @@ public class TreatmentService {
 
         int totalUsage = treatmentRequestDto.getDosage() * treatmentRequestDto.getDuration();
         int newStockQuantity = medicationInventory.getStockQuantity() - totalUsage;
-        medicationInventory.setStockQuantity(newStockQuantity);
+        if(medicationInventory.getStockQuantity() < totalUsage){
+            throw new ValueToHighException("There is not enough in stock");
+        } else{
+            medicationInventory.setStockQuantity(newStockQuantity);
+        }
 
         for (int i = 0; i < treatmentRequestDto.getDuration(); i++) {
             Treatment treatment = new Treatment();

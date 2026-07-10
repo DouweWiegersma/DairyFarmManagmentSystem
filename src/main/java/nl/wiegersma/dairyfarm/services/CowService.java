@@ -7,9 +7,10 @@ import nl.wiegersma.dairyfarm.dtos.CowResponseDto;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.ClawTreatmentMapper;
 import nl.wiegersma.dairyfarm.mappers.CowMapper;
+import nl.wiegersma.dairyfarm.mappers.DiseaseMapper;
 import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.models.Cow;
-import nl.wiegersma.dairyfarm.repositories.ClawTreatmentRepository;
+import nl.wiegersma.dairyfarm.models.Disease;
 import nl.wiegersma.dairyfarm.repositories.CowRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,33 +22,24 @@ public class CowService {
     private final CowRepository cowRepository;
     private final CowMapper cowMapper;
     private final ClawTreatmentMapper clawTreatmentMapper;
-    private final ClawTreatmentRepository clawTreatmentRepository;
+    private final DiseaseMapper diseaseMapper;
 
-    public CowService(CowRepository cowRepository, CowMapper cowMapper, ClawTreatmentMapper clawTreatmentMapper, ClawTreatmentRepository clawTreatmentRepository) {
+    public CowService(CowRepository cowRepository, CowMapper cowMapper, ClawTreatmentMapper clawTreatmentMapper, DiseaseMapper diseaseMapper) {
         this.cowRepository = cowRepository;
         this.cowMapper = cowMapper;
         this.clawTreatmentMapper = clawTreatmentMapper;
-        this.clawTreatmentRepository = clawTreatmentRepository;
+        this.diseaseMapper = diseaseMapper;
     }
 
     @Transactional
-        public List<CowResponseDto> getCows(boolean clawTreatments, boolean cowNumber) {
+        public List<CowResponseDto> getCows(boolean cowNumber) {
             List<Cow> cows;
         if(cowNumber) {
             cows = cowRepository.findAllByOrderByCowNumberDesc();
         } else {
             cows = cowRepository.findAllByOrderByCowNumberAsc();
         }
-
             List<CowResponseDto> cowResponseDtoList = cowMapper.toListDto(cows);
-
-//            if(clawTreatments) {
-//                for (int i = 0; i < cows.size(); i++) {
-//                    cowResponseDtoList.get(i).setClawTreatment(
-//                            clawTreatmentMapper.clawTreatmentToDtoList(cows.get(i).getClawTreatments()));
-//                }
-//
-//            }
             return cowResponseDtoList;
     }
 
@@ -62,6 +54,14 @@ public class CowService {
             CowAndClawTreatmentResponseDto cowAndTreatment = new CowAndClawTreatmentResponseDto();
             cowAndTreatment.setCow(cowResponseDto);
             cowAndTreatment.setClawTreatment(clawTreatmentResponseDtoList);
+
+            for (int i = 0; i < clawTreatmentList.size(); i++) {
+                Disease disease = clawTreatmentList.get(i).getDisease();
+                if (disease != null) {
+                    clawTreatmentResponseDtoList.get(i).setDisease(diseaseMapper.toDto(disease));
+                }
+            }
+
             return cowAndTreatment;
         } else{
             Cow cow = cowRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Cow not found with id:" + id));

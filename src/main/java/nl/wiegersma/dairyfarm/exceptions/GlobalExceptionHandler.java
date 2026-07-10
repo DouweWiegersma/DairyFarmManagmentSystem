@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(methodArgumentNotValidException.getBindingResult().getFieldErrors().get(0).getDefaultMessage());
     }
 
+    @ExceptionHandler(value = ValueToHighException.class)
+    public ResponseEntity<String> handleValueToHighException(ValueToHighException valueToHighException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(valueToHighException.getMessage());
+    }
+
 
 
 
