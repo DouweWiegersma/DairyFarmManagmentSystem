@@ -15,9 +15,11 @@ import java.util.List;
 })
 public interface TreatmentMapper {
 
+
     @Mapping(target = "disease", ignore = true)
     Treatment toEntity(TreatmentRequestDto treatmentRequestDto);
 
+    @Mapping(source = "unit", target = "unit")
     @Mapping(source = "cow.cowNumber", target = "cowNumber")
     @Mapping(source = "medication.name", target = "medicationName")
     @Mapping(source = "medicationInventories.batchNumber", target = "batchNumber")
@@ -32,6 +34,7 @@ public interface TreatmentMapper {
 
     List<Treatment> toEntity(List<TreatmentRequestDto> treatmentRequestDtos);
 
+    @Mapping(source = "unit", target = "unit")
     @Mapping(source = "cow.cowNumber", target = "cowNumber")
     @Mapping(source = "medication.name", target = "medicationName")
     @Mapping(source = "medicationInventories.batchNumber", target = "batchNumber")

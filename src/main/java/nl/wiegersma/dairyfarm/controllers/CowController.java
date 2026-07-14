@@ -1,5 +1,6 @@
 package nl.wiegersma.dairyfarm.controllers;
 import nl.wiegersma.dairyfarm.dtos.CowAndClawTreatmentResponseDto;
+import nl.wiegersma.dairyfarm.dtos.CowAndTreatmentsResponseDto;
 import nl.wiegersma.dairyfarm.dtos.CowRequestDto;
 import nl.wiegersma.dairyfarm.dtos.CowResponseDto;
 import nl.wiegersma.dairyfarm.services.CowService;
@@ -20,10 +21,24 @@ public class CowController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CowAndClawTreatmentResponseDto> getCow(@PathVariable Long id, @RequestParam(required = false) boolean clawTreatments){
-        CowAndClawTreatmentResponseDto cowAndClawTreatmentResponseDto = cowService.getOneCow(id, clawTreatments);
+    public ResponseEntity<CowResponseDto> getCow(@PathVariable Long id){
+        CowResponseDto cow = cowService.getOneCow(id);
+        return ResponseEntity.status(HttpStatus.OK).body(cow);
+    }
+
+    @GetMapping("{id}/clawtreatments")
+    public ResponseEntity<CowAndClawTreatmentResponseDto> getOneCowWithClawTreatments(@PathVariable Long id){
+        CowAndClawTreatmentResponseDto cowAndClawTreatmentResponseDto = cowService.getOneCowWithClawTreatments(id);
         return ResponseEntity.status(HttpStatus.OK).body(cowAndClawTreatmentResponseDto);
     }
+
+
+    @GetMapping("{id}/treatments")
+    public ResponseEntity<CowAndTreatmentsResponseDto> getOneCowWithTreatments(@PathVariable Long id){
+        CowAndTreatmentsResponseDto cowAndTreatmentsDto = cowService.getOneCowWithTreatments(id);
+        return ResponseEntity.status(HttpStatus.OK).body(cowAndTreatmentsDto);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<CowResponseDto>> getAllCows( @RequestParam (required = false) boolean cowNumber){

@@ -3,11 +3,10 @@ package nl.wiegersma.dairyfarm.dtos;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import nl.wiegersma.dairyfarm.enums.Unit;
 
-@Getter
-@Setter
+@Data
 public class MedicationInventoryRequestDto {
 
     @Size(min = 7, max = 7, message = "BatchNumber needs to have 7 numbers")
@@ -19,4 +18,7 @@ public class MedicationInventoryRequestDto {
 
     @NotNull(message = "medication is required")
     private Long medicationId;
+
+    @NotNull(message = "unit is required")
+    private Unit unit;
 }

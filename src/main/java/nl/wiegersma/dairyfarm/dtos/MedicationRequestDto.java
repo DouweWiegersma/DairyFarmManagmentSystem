@@ -2,11 +2,11 @@ package nl.wiegersma.dairyfarm.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+import nl.wiegersma.dairyfarm.enums.Time;
+
+@Data
 public class MedicationRequestDto {
 
     @NotBlank(message = "name is required")
@@ -20,5 +20,8 @@ public class MedicationRequestDto {
 
     @NotNull(message = "meatWithdrawalPeriod is required")
     private Long meatWithdrawalPeriod;
+
+    @NotNull(message = "time is required")
+    private Time time;
 
 }

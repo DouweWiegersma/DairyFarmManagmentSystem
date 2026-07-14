@@ -3,12 +3,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+import nl.wiegersma.dairyfarm.enums.Unit;
+
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 public class TreatmentRequestDto {
 
     @Min(value = 1, message = "min dosage 1")
@@ -35,4 +36,9 @@ public class TreatmentRequestDto {
 
     @NotNull(message = "disease is required")
     private Long diseaseId;
+
+    @NotNull(message = "time is required")
+    private Unit unit;
+
+
 }

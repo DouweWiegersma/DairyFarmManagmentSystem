@@ -1,10 +1,6 @@
 package nl.wiegersma.dairyfarm.controllers;
-
-
-import nl.wiegersma.dairyfarm.dtos.MedicationInventoryRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationResponseDto;
-import nl.wiegersma.dairyfarm.repositories.MedicationInventoryRepository;
 import nl.wiegersma.dairyfarm.services.MedicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

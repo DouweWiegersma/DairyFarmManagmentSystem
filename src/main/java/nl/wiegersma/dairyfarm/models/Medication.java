@@ -1,10 +1,9 @@
 package nl.wiegersma.dairyfarm.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import nl.wiegersma.dairyfarm.enums.Time;
 
 import java.util.List;
 
@@ -17,6 +16,8 @@ public class Medication extends Base {
     private String description;
     private Long milkWithholdingPeriod;
     private Long meatWithdrawalPeriod;
+    @Enumerated(EnumType.STRING)
+    private Time time;
 
     @OneToMany(mappedBy = "medication")
     private List<MedicationInventory> medicationInventories;

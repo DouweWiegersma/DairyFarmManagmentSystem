@@ -18,13 +18,13 @@ public interface ClawTreatmentMapper {
 
     ClawTreatment toEntity(ClawTreatmentRequestDto clawTreatmentRequestDto);
 
-    @Mapping(target = "disease", ignore = true)
+
+    @Mapping(source = "cow.cowNumber", target = "cowNumber")
+    @Mapping(source = "disease.name", target = "diseaseName")
+    @Mapping(source = "disease.description", target = "diseaseDescription")
+    @Mapping(source = "disease.treatment", target = "treatmentSteps")
     ClawTreatmentResponseDto toDto(ClawTreatment clawTreatment);
 
     void updateClawTreatment(ClawTreatmentRequestDto clawTreatmentRequestDto, @MappingTarget ClawTreatment clawTreatment);
 
-
-    List<ClawTreatment> clawTreatmentToEntityList(List<ClawTreatmentRequestDto> clawTreatmentRequestDtoList);
-
-    List<ClawTreatmentResponseDto> clawTreatmentToDtoList(List<ClawTreatment> clawTreatmentsList);
 }

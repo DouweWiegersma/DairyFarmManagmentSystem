@@ -17,6 +17,8 @@ public class ClawTreatment extends Base{
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateClawTreatment;
+
+    @Enumerated(EnumType.STRING)
     private ClawPosition clawPosition;
 
     @ManyToOne

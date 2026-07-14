@@ -4,30 +4,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import nl.wiegersma.dairyfarm.enums.Unit;
-
 
 import java.time.LocalDate;
-
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TreatmentResponseDto extends BaseDto {
+public class TreatmentResponseDtoWithoutCowNumber {
+
     private int dosage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate date;
     private String description;
     private String medicationName;
-    private Long cowNumber;
     private int batchNumber;
     private String diseaseName;
-    private Unit unit;
+    private String unit;
     public String getDosageWithUnit() {
-        return dosage + " " + unit.toString().toLowerCase();
+        return dosage + " " + unit.toLowerCase();
     }
-
-
-
-
-
 }

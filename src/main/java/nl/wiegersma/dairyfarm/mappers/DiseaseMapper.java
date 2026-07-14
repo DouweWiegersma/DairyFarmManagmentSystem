@@ -10,14 +10,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface DiseaseMapper {
 
-
     DiseaseResponseDto toDto(Disease clawDisease);
 
     Disease toEntity(DiseaseRequestDto DiseaseRequestDto);
 
     void updateDisease(DiseaseRequestDto DiseaseRequestDto, @MappingTarget Disease Disease);
-
-    List<Disease> DiseaseToList(List<DiseaseRequestDto> DiseaseRequestDtoList);
 
     List<DiseaseResponseDto> DiseaseDtoToList(List<Disease> DiseaseList);
 }

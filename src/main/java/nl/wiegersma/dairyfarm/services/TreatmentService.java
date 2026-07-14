@@ -48,13 +48,11 @@ public class TreatmentService {
         MedicationInventory medicationInventory = medicationInventoryRepository.findById(treatmentRequestDto.getMedicationInventoryId()).orElseThrow(() -> new RecordNotFoundException("this medication Inventory doesn't exist"));
         Disease disease = diseaseRepository.findById(treatmentRequestDto.getDiseaseId()).orElseThrow(() -> new RecordNotFoundException("claw disease doesn't exist wiith id " + treatmentRequestDto.getDiseaseId()));
 
-
         List<TreatmentResponseDto> treatments = new ArrayList<>();
-
         int totalUsage = treatmentRequestDto.getDosage() * treatmentRequestDto.getDuration();
         int newStockQuantity = medicationInventory.getStockQuantity() - totalUsage;
         if(medicationInventory.getStockQuantity() < totalUsage){
-            throw new ValueToHighException("There is not enough in stock");
+            throw new ValueToHighException("There is not enough " + medication.getName() + " in stock");
         } else{
             medicationInventory.setStockQuantity(newStockQuantity);
         }
@@ -69,8 +67,10 @@ public class TreatmentService {
             treatment.setDuration(treatmentRequestDto.getDuration());
             treatment.setDate(date);
             treatment.setDisease(disease);
-
+            treatment.setUnit(treatmentRequestDto.getUnit());
+            treatment.setId(treatment.getId());
             treatmentRepository.save(treatment);
+
             TreatmentResponseDto treatmentResponseDto = new TreatmentResponseDto();
             treatmentResponseDto.setCowNumber(cow.getCowNumber());
             treatmentResponseDto.setMedicationName(medication.getName());
@@ -79,6 +79,9 @@ public class TreatmentService {
             treatmentResponseDto.setDate(date);
             treatmentResponseDto.setDiseaseName(disease.getName());
             treatmentResponseDto.setDescription(disease.getDescription());
+            treatmentResponseDto.setUnit(treatment.getUnit());
+            treatmentResponseDto.setId(treatment.getId());
+
             treatments.add(treatmentResponseDto);
         }
         return treatments;

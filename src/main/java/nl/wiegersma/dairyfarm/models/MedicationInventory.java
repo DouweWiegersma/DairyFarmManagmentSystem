@@ -2,6 +2,7 @@ package nl.wiegersma.dairyfarm.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import nl.wiegersma.dairyfarm.enums.Unit;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class MedicationInventory extends Base{
 
     @OneToMany(mappedBy = "medicationInventories")
     private List<Treatment> treatment;
+
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
 
 

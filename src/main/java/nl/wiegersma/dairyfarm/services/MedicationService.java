@@ -6,8 +6,6 @@ import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.exceptions.ResourceInUseException;
 import nl.wiegersma.dairyfarm.mappers.MedicationMapper;
 import nl.wiegersma.dairyfarm.models.Medication;
-import nl.wiegersma.dairyfarm.models.MedicationInventory;
-import nl.wiegersma.dairyfarm.repositories.MedicationInventoryRepository;
 import nl.wiegersma.dairyfarm.repositories.MedicationRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +16,11 @@ public class MedicationService {
 
     private final MedicationMapper medicationMapper;
     private final MedicationRepository medicationRepository;
-    private final MedicationInventoryRepository medicationInventoryRepository;
 
-    public MedicationService(MedicationMapper medicationMapper, MedicationRepository medicationRepository, MedicationInventoryRepository medicationInventoryRepository) {
+
+    public MedicationService(MedicationMapper medicationMapper, MedicationRepository medicationRepository) {
         this.medicationMapper = medicationMapper;
         this.medicationRepository = medicationRepository;
-        this.medicationInventoryRepository = medicationInventoryRepository;
     }
 
     public MedicationResponseDto getMedication(Long id){

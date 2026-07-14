@@ -3,7 +3,6 @@ import jakarta.transaction.Transactional;
 import nl.wiegersma.dairyfarm.dtos.*;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.ClawTreatmentMapper;
-import nl.wiegersma.dairyfarm.mappers.DiseaseMapper;
 import nl.wiegersma.dairyfarm.models.ClawTreatment;
 import nl.wiegersma.dairyfarm.models.Cow;
 import nl.wiegersma.dairyfarm.models.Disease;
@@ -20,28 +19,28 @@ public class ClawTreatmentService {
     private final ClawTreatmentMapper clawTreatmentMapper;
     private final DiseaseRepository diseaseRepository;
     private final CowRepository cowRepository;
-    private final DiseaseMapper diseaseMapper;
 
-    public ClawTreatmentService(ClawTreatmentRepository clawTreatmentRepository, ClawTreatmentMapper clawTreatmentMapper, DiseaseRepository diseaseRepository, CowRepository cowRepository, DiseaseMapper diseaseMapper) {
+
+    public ClawTreatmentService(ClawTreatmentRepository clawTreatmentRepository, ClawTreatmentMapper clawTreatmentMapper, DiseaseRepository diseaseRepository, CowRepository cowRepository) {
         this.clawTreatmentRepository = clawTreatmentRepository;
         this.clawTreatmentMapper = clawTreatmentMapper;
         this.diseaseRepository = diseaseRepository;
         this.cowRepository = cowRepository;
-        this.diseaseMapper = diseaseMapper;
     }
 
     @Transactional
     public ClawTreatmentResponseDto createClawTreatment(ClawTreatmentRequestDto clawTreatmentRequestDto){
             Disease disease = diseaseRepository.findById(clawTreatmentRequestDto.getDiseaseId()).orElseThrow(() -> new RecordNotFoundException("ClawDisease with id " + clawTreatmentRequestDto.getDiseaseId() + "doesn't exist"));
-
             ClawTreatment clawTreatment = clawTreatmentMapper.toEntity(clawTreatmentRequestDto);
             clawTreatment.setDisease(disease);
-
             Cow cow = cowRepository.findById(clawTreatmentRequestDto.getCowId()).orElseThrow(() -> new RecordNotFoundException("Cow with id " + clawTreatmentRequestDto.getCowId() + " doesn't exist"));
             clawTreatment.setCow(cow);
             clawTreatment = clawTreatmentRepository.save(clawTreatment);
             ClawTreatmentResponseDto newClawTreatment = clawTreatmentMapper.toDto(clawTreatment);
-            newClawTreatment.setDisease(diseaseMapper.toDto(clawTreatment.getDisease()));
+            newClawTreatment.setDiseaseName(disease.getName());
+            newClawTreatment.setCowNumber(cow.getCowNumber());
+            newClawTreatment.setDiseaseDescription(disease.getDescription());
+            newClawTreatment.setTreatmentSteps(disease.getTreatment());
 
             return newClawTreatment;
 
@@ -50,26 +49,15 @@ public class ClawTreatmentService {
 
     @Transactional
     public List<ClawTreatmentResponseDto> getAllClawTreatments(){
-        List<ClawTreatment> clawTreatmentList = clawTreatmentRepository.findAll();
-        List<ClawTreatmentResponseDto> dtoList = clawTreatmentMapper.clawTreatmentToDtoList(clawTreatmentList);
-        return dtoList;
+        return clawTreatmentRepository.findAll().stream().map(clawTreatmentMapper::toDto).toList();
     }
 
 
     @Transactional
-    public ClawTreatmentResponseDto getOneClawTreatment(Long clawTreatmentId, boolean diseases){
-        if(diseases){
-            ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId + " doesn't exist"));
-            ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentMapper.toDto(clawTreatment);
-            Disease disease = clawTreatment.getDisease();
-            DiseaseResponseDto diseaseResponseDto = diseaseMapper.toDto(disease);
-            clawTreatmentResponseDto.setDisease(diseaseResponseDto);
-            return clawTreatmentResponseDto;
-        } else {
+    public ClawTreatmentResponseDto getOneClawTreatment(Long clawTreatmentId){
             ClawTreatment clawTreatment = clawTreatmentRepository.findById(clawTreatmentId).orElseThrow(() -> new RecordNotFoundException("ClawTreatment with id " + clawTreatmentId + " doesn't exist"));
             ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentMapper.toDto(clawTreatment);
             return clawTreatmentResponseDto;
-        }
     }
 
 

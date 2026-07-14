@@ -6,9 +6,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CowAndClawTreatmentResponseDto {
+public class CowAndTreatmentsResponseDto {
+
 
     private boolean aLife;
     private Long cowNumber;
-    private List<ClawTreatmentResponseDtoWithoutCowNumber> clawTreatments;
+    private List<TreatmentResponseDtoWithoutCowNumber> treatments;
 }

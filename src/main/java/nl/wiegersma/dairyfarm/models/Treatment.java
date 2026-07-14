@@ -1,8 +1,9 @@
 package nl.wiegersma.dairyfarm.models;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+import nl.wiegersma.dairyfarm.enums.Unit;
+
 import java.time.LocalDate;
 
 
@@ -13,6 +14,8 @@ import java.time.LocalDate;
 public class Treatment extends Base{
 
     private int dosage;
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
     private int duration;
     private LocalDate date;
     private String description;

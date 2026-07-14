@@ -54,7 +54,6 @@ public class DiseaseService {
     public void deleteDisease(Long id){
         Disease disease = DiseaseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Claw disease not found with id: " + id));
         List<ClawTreatment> clawTreatments = clawTreatmentRepository.findByDiseaseId(id);
-
         for (ClawTreatment clawTreatment : clawTreatments) {
             clawTreatment.setDisease(null);
         }

@@ -31,7 +31,7 @@ public class TreatmentController {
     }
 
     @PostMapping
-    public ResponseEntity<List<TreatmentResponseDto>> createTreatment(@Valid  @RequestBody  TreatmentRequestDto treatmentRequestDto) {
+    public ResponseEntity<List<TreatmentResponseDto>> createTreatment(@Valid @RequestBody TreatmentRequestDto treatmentRequestDto) {
         List<TreatmentResponseDto> treatmentResponseDto = treatmentService.createTreatment(treatmentRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(treatmentResponseDto);
     }
