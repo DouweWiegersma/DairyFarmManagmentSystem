@@ -1,13 +1,11 @@
 package nl.wiegersma.dairyfarm.controllers;
-import nl.wiegersma.dairyfarm.dtos.CowAndClawTreatmentResponseDto;
-import nl.wiegersma.dairyfarm.dtos.CowAndTreatmentsResponseDto;
-import nl.wiegersma.dairyfarm.dtos.CowRequestDto;
-import nl.wiegersma.dairyfarm.dtos.CowResponseDto;
+import nl.wiegersma.dairyfarm.dtos.*;
+import nl.wiegersma.dairyfarm.models.CowPhoto;
 import nl.wiegersma.dairyfarm.services.CowService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -24,6 +22,18 @@ public class CowController {
     public ResponseEntity<CowResponseDto> getCow(@PathVariable Long id){
         CowResponseDto cow = cowService.getOneCow(id);
         return ResponseEntity.status(HttpStatus.OK).body(cow);
+    }
+
+    @GetMapping("/{cowId}/photo")
+    public ResponseEntity<byte[]> getCowPhoto(@PathVariable Long cowId) {
+        CowPhoto cowPhoto = cowService.getCowPhoto(cowId);
+        if (cowPhoto == null || cowPhoto.getContents() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(cowPhoto.getContentType()))
+                    .body(cowPhoto.getContents());
+        }
     }
 
     @GetMapping("{id}/clawtreatments")

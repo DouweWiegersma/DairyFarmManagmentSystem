@@ -83,6 +83,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/treatments/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
                         .requestMatchers(HttpMethod.PUT, "/treatments/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/treatments/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/cowphoto/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
                         .anyRequest().denyAll()
                 )
                 .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -4,6 +4,7 @@ import nl.wiegersma.dairyfarm.dtos.*;
 import nl.wiegersma.dairyfarm.exceptions.RecordNotFoundException;
 import nl.wiegersma.dairyfarm.mappers.*;
 import nl.wiegersma.dairyfarm.models.Cow;
+import nl.wiegersma.dairyfarm.models.CowPhoto;
 import nl.wiegersma.dairyfarm.repositories.CowRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ public class CowService {
     private final CowMapper cowMapper;
     private final ClawTreatmentMapperWithoutCowNumber clawTreatmentMapperWithoutCowNumber;
     private final CowAndTreatmentMapper cowAndTreatmentMapper;
+
 
     public CowService(CowRepository cowRepository, CowMapper cowMapper, ClawTreatmentMapperWithoutCowNumber clawTreatmentMapperWithoutCowNumber, CowAndTreatmentMapper cowAndTreatmentMapper) {
         this.cowRepository = cowRepository;
@@ -36,6 +38,16 @@ public class CowService {
             List<CowResponseDto> cowResponseDtoList = cowMapper.toListDto(cows);
             return cowResponseDtoList;
     }
+
+    @Transactional
+    public CowPhoto getCowPhoto(Long cowId) {
+        Cow cow = cowRepository.findById(cowId)
+                .orElseThrow(() -> new RecordNotFoundException("Koe met ID " + cowId + " niet gevonden"));
+       CowPhoto cowPhoto = cow.getCowPhoto();
+       return cowPhoto;
+    }
+
+
 
     @Transactional
     public CowAndClawTreatmentResponseDto getOneCowWithClawTreatments(@PathVariable Long id){
