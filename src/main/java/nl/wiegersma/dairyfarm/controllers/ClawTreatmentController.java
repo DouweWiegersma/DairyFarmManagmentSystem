@@ -1,5 +1,6 @@
 package nl.wiegersma.dairyfarm.controllers;
 
+import jakarta.validation.Valid;
 import nl.wiegersma.dairyfarm.dtos.ClawTreatmentRequestDto;
 import nl.wiegersma.dairyfarm.dtos.ClawTreatmentResponseDto;
 import nl.wiegersma.dairyfarm.services.ClawTreatmentService;
@@ -20,7 +21,7 @@ public class ClawTreatmentController {
     }
 
     @PostMapping
-    public ResponseEntity<ClawTreatmentResponseDto> createClawTreatment(@RequestBody ClawTreatmentRequestDto clawTreatmentRequestDto){
+    public ResponseEntity<ClawTreatmentResponseDto> createClawTreatment(@Valid @RequestBody ClawTreatmentRequestDto clawTreatmentRequestDto){
         ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.createClawTreatment(clawTreatmentRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(clawTreatmentResponseDto);
     }
@@ -38,7 +39,7 @@ public class ClawTreatmentController {
     }
 
     @PutMapping("{id}/clawDiseases")
-    public ResponseEntity<ClawTreatmentResponseDto> updateClawTreatment(@PathVariable Long id, @RequestBody ClawTreatmentRequestDto clawTreatmentRequestDto){
+    public ResponseEntity<ClawTreatmentResponseDto> updateClawTreatment(@PathVariable Long id,@Valid @RequestBody ClawTreatmentRequestDto clawTreatmentRequestDto){
         ClawTreatmentResponseDto clawTreatmentResponseDto = clawTreatmentService.updateClawTreatment(id, clawTreatmentRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(clawTreatmentResponseDto);
     }

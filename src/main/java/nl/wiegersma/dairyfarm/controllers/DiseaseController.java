@@ -1,5 +1,6 @@
 package nl.wiegersma.dairyfarm.controllers;
 
+import jakarta.validation.Valid;
 import nl.wiegersma.dairyfarm.dtos.DiseaseRequestDto;
 import nl.wiegersma.dairyfarm.dtos.DiseaseResponseDto;
 
@@ -31,13 +32,13 @@ public class DiseaseController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<DiseaseResponseDto> updateClawDisease(@PathVariable Long id, @RequestBody DiseaseRequestDto diseaseRequestDto){
+    public ResponseEntity<DiseaseResponseDto> updateClawDisease(@PathVariable Long id,@Valid @RequestBody DiseaseRequestDto diseaseRequestDto){
         DiseaseResponseDto clawDiseaseResponseDto = diseaseService.updateDisease(diseaseRequestDto, id);
         return ResponseEntity.status(HttpStatus.OK).body(clawDiseaseResponseDto);
     }
 
     @PostMapping
-    public ResponseEntity<DiseaseResponseDto> CreateClawDisease(@RequestBody DiseaseRequestDto diseaseRequestDto){
+    public ResponseEntity<DiseaseResponseDto> CreateClawDisease(@Valid @RequestBody DiseaseRequestDto diseaseRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(diseaseService.createDisease(diseaseRequestDto));
     }
 

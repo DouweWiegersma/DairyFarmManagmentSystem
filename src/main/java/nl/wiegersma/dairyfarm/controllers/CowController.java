@@ -1,4 +1,5 @@
 package nl.wiegersma.dairyfarm.controllers;
+import jakarta.validation.Valid;
 import nl.wiegersma.dairyfarm.dtos.*;
 import nl.wiegersma.dairyfarm.models.CowPhoto;
 import nl.wiegersma.dairyfarm.services.CowService;
@@ -58,13 +59,13 @@ public class CowController {
 
 
     @PostMapping
-    public ResponseEntity<CowResponseDto> createCow(@RequestBody CowRequestDto cowRequestDto){
+    public ResponseEntity<CowResponseDto> createCow(@Valid @RequestBody CowRequestDto cowRequestDto){
         CowResponseDto cowResponseDto = cowService.createCow(cowRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(cowResponseDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CowResponseDto> updateCow(@PathVariable Long id, @RequestBody CowRequestDto cowRequestDto){
+    public ResponseEntity<CowResponseDto> updateCow(@PathVariable Long id, @Valid @RequestBody CowRequestDto cowRequestDto){
         CowResponseDto cowResponseDto = cowService.updateCow(id, cowRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(cowResponseDto);
     }

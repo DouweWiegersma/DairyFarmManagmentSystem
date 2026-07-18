@@ -1,4 +1,5 @@
 package nl.wiegersma.dairyfarm.controllers;
+import jakarta.validation.Valid;
 import nl.wiegersma.dairyfarm.dtos.MedicationInventoryRequestDto;
 import nl.wiegersma.dairyfarm.dtos.MedicationInventoryResponseDto;
 import nl.wiegersma.dairyfarm.services.MedicationInventoryService;
@@ -30,13 +31,13 @@ public class MedicationInventoryController {
     }
 
     @PostMapping
-    public ResponseEntity<MedicationInventoryResponseDto> createMedicationInventory(@RequestBody MedicationInventoryRequestDto medicationInventoryRequestDto){
+    public ResponseEntity<MedicationInventoryResponseDto> createMedicationInventory(@Valid @RequestBody MedicationInventoryRequestDto medicationInventoryRequestDto){
        MedicationInventoryResponseDto medicationInventoryResponseDto = medicationInventoryService.createMedicationInventory(medicationInventoryRequestDto);
        return ResponseEntity.status(HttpStatus.CREATED).body(medicationInventoryResponseDto);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<MedicationInventoryResponseDto> updateMedicationInventory(@PathVariable Long id, @RequestBody MedicationInventoryRequestDto medicationInventoryRequestDto){
+    public ResponseEntity<MedicationInventoryResponseDto> updateMedicationInventory(@PathVariable Long id, @Valid @RequestBody MedicationInventoryRequestDto medicationInventoryRequestDto){
         MedicationInventoryResponseDto medicationInventoryResponseDto = medicationInventoryService.updateMedicationInventory(id, medicationInventoryRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(medicationInventoryResponseDto);
     }
