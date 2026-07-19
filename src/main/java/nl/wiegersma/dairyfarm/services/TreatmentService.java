@@ -81,7 +81,6 @@ public class TreatmentService {
             treatmentResponseDto.setDescription(disease.getDescription());
             treatmentResponseDto.setUnit(treatment.getUnit());
             treatmentResponseDto.setId(treatment.getId());
-
             treatments.add(treatmentResponseDto);
         }
         return treatments;

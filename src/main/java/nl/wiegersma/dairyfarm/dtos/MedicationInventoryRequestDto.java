@@ -2,6 +2,7 @@ package nl.wiegersma.dairyfarm.dtos;
 
 import jakarta.persistence.Column;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -12,8 +13,7 @@ import nl.wiegersma.dairyfarm.enums.Unit;
 @Data
 public class MedicationInventoryRequestDto {
 
-    @Min(value = 1000000, message = "Het nummer moet minimaal 7 cijfers bevatten")
-    @Max(value = 9999999, message = "Het nummer mag maximaal 7 cijfers bevatten")
+    @Digits(integer = 7, message = "batchNumber needs 7 numbers", fraction = 0)
     private int batchNumber;
 
     @NotNull(message = "stock quantity is required")
