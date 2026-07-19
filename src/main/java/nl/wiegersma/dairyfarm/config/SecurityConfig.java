@@ -84,6 +84,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/treatments/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/treatments/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/cowphoto/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         .anyRequest().denyAll()
                 )
                 .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

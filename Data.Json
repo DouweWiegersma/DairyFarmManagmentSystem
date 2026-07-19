@@ -1,0 +1,1448 @@
+{
+  "info": {
+    "_postman_id": "cf2d4482-6310-4889-90f9-a30ba54d5958",
+    "name": "Eind Opdracht",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48401035",
+    "_collection_link": "https://go.postman.co/collection/48401035-cf2d4482-6310-4889-90f9-a30ba54d5958?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "DiseaseController",
+      "item": [
+        {
+          "name": "create Disease",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mortellaro\",\r\n    \"description\": \"Een uiterst pijnlijke, infectieuze ontsteking aan de huid, meestal net boven de klauwspleet. Veroorzaakt door bacteriën en te herkennen aan een rode, aardbeiachtige plek.\",\r\n    \"treatment\": \r\n        [\r\n        \"Schoon- en droogmaken\", \r\n        \"Overtollig hoorn weghalen\",\r\n         \"Wond behandelen\"]\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/diseases",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get One Disease",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"rock-muziek\",\r\n    \"description\": \"dit is rock-muziek\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/diseases/1",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete All Diseases",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "localhost:8080/diseases",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all Diseases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/diseases",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete Disease",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "localhost:8080/diseases/2",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Disease",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Mortellaro\",\r\n    \"description\": \"Een uiterst pijnlijke, infectieuze ontsteking aan de huid, meestal net boven de klauwspleet. Veroorzaakt door bacteriën en te herkennen aan een rode, aardbeiachtige plek.\",\r\n    \"treatment\":\r\n     [\r\n        \"Schoon- en droogmaken\",\r\n        \"Overtollig hoorn weghalen\"\r\n        \r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/diseases/1",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "diseases",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ClawTreatmentController",
+      "item": [
+        {
+          "name": "Update Claw Treatment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n       \"dateClawTreatment\": \"03-02-1995\",\r\n       \"clawPosition\": \"FRONT_RIGHT\",\r\n       \"clawDiseaseId\": 2,\r\n       \"cowId\": 8\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/clawtreatments/1/clawDiseases",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "clawtreatments",
+                "1",
+                "clawDiseases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Claw Treatment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n       \"dateClawTreatment\": \"03-03-1995\",\r\n       \"clawPosition\": \"FRONT_RIGHT\",\r\n       \"diseaseId\": 3,\r\n       \"cowId\": 4\r\n\r\n    \r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/clawtreatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "clawtreatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Claw Treatments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/clawtreatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "clawtreatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Claw Treatment",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n       \"dateClawTreatment\": \"03-02-1995\",\r\n       \"clawPosition\": \"FRONT_RIGHT\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/clawtreatments/1",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "clawtreatments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete ClawTreatment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n       \"dateHoofTreatment\": \"26-06-2026\",\r\n       \"clawPosition\": \"FRONT_RIGHT\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/clawtreatments/6/clawdiseases",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "clawtreatments",
+                "6",
+                "clawdiseases"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MedicationInventoryController",
+      "item": [
+        {
+          "name": "Create Medication Inventory",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"batchNumber\": 12000,\r\n    \"stockQuantity\": 20,\r\n    \"medicationId\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/medicationinventories",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medicationinventories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Medication Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/medicationinventories",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medicationinventories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Medication Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/medicationinventories/9",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medicationinventories",
+                "9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Medication Inventory",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"batchNumber\": 13920138,\r\n    \"stockQuantity\": 2\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/medicationinventories/5",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medicationinventories",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Medication Inventory",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"batchNumber\": 13920138,\r\n    \"stockQuantity\": 1\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/medicationinventories/4",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medicationinventories",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CowController",
+      "item": [
+        {
+          "name": "getOneCow",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "Employee",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/cows/1",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get AllCows",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/cows?cowNumber=false",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "cowNumber",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Cow",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/cows/20",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "20"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update cow",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cowNumber\": 2000,\r\n    \"aLife\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/cows/19",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "19"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create Cow",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cowNumber\": 7510,\r\n    \"aLife\": true\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/cows",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cow with clawtreatments",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/cows/1/clawtreatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "1",
+                "clawtreatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cow with Treatments",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/cows/1/treatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "1",
+                "treatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getCow with Photo",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/cows/2/photo",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cows",
+                "2",
+                "photo"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MedicationController",
+      "item": [
+        {
+          "name": "Create Medication",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"name\": \"avolxoil\",\r\n    \"description\": \"mastitus injector\",\r\n    \"milkWithholdingPerios\": 3,\r\n    \"meatWithdrawalPeriod\": 30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/medications",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medications"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get Medication",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/medications/3",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medications",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get All medications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/medications",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medications"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete Medication",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:8080/medications/3",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medications",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Medication",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"avolxoils\",\r\n    \"description\": \"mastitus injector\",\r\n    \"milkWithholdingPeriod\": 1200,\r\n    \"meatWithdrawalPeriod\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/medications/3",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "medications",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "TreatmentController",
+      "item": [
+        {
+          "name": "Create Treatment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dosage\": 1,\r\n    \"duration\": 3,\r\n    \"date\": \"09-05-2026\",\r\n    \"cowId\": 1,\r\n    \"medicationInventoryId\": 1,\r\n    \"medicationId\": 1,\r\n    \"diseaseId\": 4\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/treatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "treatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all treatments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dosage\": 30,\r\n    \"duration\": 3,\r\n    \"date\": \"03-03-2026\",\r\n    \"description\": \"koe met mastitus\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/treatments",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "treatments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get one Treatment",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dosage\": 30,\r\n    \"duration\": 3,\r\n    \"date\": \"03-03-2026\",\r\n    \"description\": \"koe met mastitus\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/treatments/5",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "treatments",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Treatment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"dosage\": 1,\r\n    \"duration\": 3,\r\n    \"date\": \"09-05-2026\",\r\n    \"cowId\": 1,\r\n    \"medicationInventoryId\": 1,\r\n    \"medicationId\": 1,\r\n    \"diseaseId\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/treatments/1",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "treatments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete Treatment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"description\": \"mastitus\",\r\n    \"cowId\": 2,\r\n    \"medicationId\": 1,\r\n    \"medicationInventoryId\": 1\r\n}"
+            },
+            "url": {
+              "raw": "localhost:8080/treatments/2",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "treatments",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CowPhoto Controller",
+      "item": [
+        {
+          "name": "upload PhotoCow to cow",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "tokenName",
+                  "value": "admin1",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "http://localhost:9090/realms/{{auth_secret_01gd}}System/protocol/openid-connect/auth",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                },
+                {
+                  "key": "clientSecret",
+                  "value": "{{auth_secret_1dyt}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{auth_secret_01gd}}",
+                  "type": "string"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid",
+                  "type": "string"
+                },
+                {
+                  "key": "useBrowser",
+                  "value": true,
+                  "type": "boolean"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "7178a4b0-889a-48bb-935e-2033386b18ba",
+                  "src": "/C:/Users/Douwe/Desktop/koe.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:8080/cowphoto/uploadphoto/1/cow",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cowphoto",
+                "uploadphoto",
+                "1",
+                "cow"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_01gd",
+      "secret": true
+    },
+    {
+      "key": "auth_secret_1dyt",
+      "secret": true
+    }
+  ]
+}
